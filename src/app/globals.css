@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas-pitch: #020617;
+  --canvas-surface: #0B0F19;
+  --canvas-surface-2: #111827;
+  --canvas-inverted: #FFFFFF;
+  --falcon-cyan: #0EA5E9;
+  --falcon-cyan-neon: #00F0FF;
+  --falcon-indigo: #6366F1;
+}
+
+body {
+  background-color: var(--canvas-pitch);
+  color: #F8FAFC;
+  overflow-x: hidden;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* Custom scrollbars for high-tech HUD */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0EA5E9;
+}
