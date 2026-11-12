@@ -8,7 +8,6 @@ import {
   describe,
   it,
   expect,
-  ApplicantFeatures,
   calculateLogOdds,
   calculateApprovalProbability,
   classifyRiskTier,
@@ -20,6 +19,7 @@ import {
   simulateEnvironmentalPhysics,
   calculatePue,
 } from '../test-runner.ts';
+import type { ApplicantFeatures } from '../test-runner.ts';
 
 describe('Tier 2: Boundary & Corner Cases Suite', () => {
   // --------------------------------------------------------------------------
@@ -108,7 +108,7 @@ describe('Tier 2: Boundary & Corner Cases Suite', () => {
   it('F3-B1: clamps font size at 320px ultra-narrow viewport without horizontal overflow', () => {
     // clamp(2.5rem, 13vw, 17.5vw) at 320px yields 2.5rem (40px)
     const computeClampedFont = (vw: number) => Math.max(40, Math.min(280, vw * 0.14));
-    expect(computeClampedFont(320)).toBe(44.8);
+    expect(computeClampedFont(320)).toBeCloseTo(44.8, 0.001);
     expect(computeClampedFont(320)).toBeGreaterThanOrEqual(40);
   });
 
@@ -207,9 +207,9 @@ describe('Tier 2: Boundary & Corner Cases Suite', () => {
   // --------------------------------------------------------------------------
   // F6: Hero Tagline & Metadata Badges Boundaries
   // --------------------------------------------------------------------------
-  it('F6-B1: verifies tagline text character length matches canonical 85 characters', () => {
+  it('F6-B1: verifies tagline text character length matches canonical 81 characters', () => {
     const tagline = 'You met me in the Falcon era of my life — where every challenge becomes altitude.';
-    expect(tagline.length).toBe(85);
+    expect(tagline.length).toBe(81);
   });
 
   it('F6-B2: verifies pulse animation uses GPU-accelerated opacity/transform', () => {

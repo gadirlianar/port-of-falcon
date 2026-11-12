@@ -40,18 +40,16 @@ export default function HeroAvatar({
         aria-hidden="true"
       />
 
-      {/* Dual Gradient Masked Container (Zero-Bug Nested Architecture) */}
-      {/* Outer wrapper: Vertical mask (75% to 100%) */}
+      {/* Dual Gradient Masked Container */}
       <div
-        className="relative h-full w-full"
+        className="absolute inset-0"
         style={{
           WebkitMaskImage: 'linear-gradient(to bottom, #000 75%, transparent 100%)',
           maskImage: 'linear-gradient(to bottom, #000 75%, transparent 100%)',
         }}
       >
-        {/* Inner wrapper: Horizontal mask (0-12% and 88-100%) */}
         <div
-          className="relative h-full w-full overflow-hidden"
+          className="absolute inset-0 overflow-hidden"
           style={{
             WebkitMaskImage: 'linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%)',
             maskImage: 'linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%)',

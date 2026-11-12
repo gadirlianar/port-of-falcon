@@ -8,7 +8,6 @@ import {
   describe,
   it,
   expect,
-  ApplicantFeatures,
   calculateLogOdds,
   calculateApprovalProbability,
   classifyRiskTier,
@@ -20,6 +19,7 @@ import {
   simulateEnvironmentalPhysics,
   calculatePue,
 } from '../test-runner.ts';
+import type { ApplicantFeatures } from '../test-runner.ts';
 
 import fs from 'node:fs';
 import path from 'node:path';

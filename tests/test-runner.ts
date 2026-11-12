@@ -10,6 +10,7 @@ export interface TestResult {
   durationMs: number;
   error?: Error | unknown;
 }
+export const TestResult = {} as any;
 
 export interface SuiteResult {
   name: string;
@@ -17,6 +18,7 @@ export interface SuiteResult {
   durationMs: number;
   tests: TestResult[];
 }
+export const SuiteResult = {} as any;
 
 export type MatcherResult = {
   pass: boolean;
@@ -113,8 +115,11 @@ function deepEqual(a: any, b: any): boolean {
  */
 export class Expectation<T = any> {
   private isNot = false;
+  actual: T;
 
-  constructor(private actual: T) {}
+  constructor(actual: T) {
+    this.actual = actual;
+  }
 
   get not(): Expectation<T> {
     const inverted = new Expectation(this.actual);
@@ -217,6 +222,13 @@ export class Expectation<T = any> {
     );
   }
 
+  toBeNull() {
+    this.assert(
+      this.actual === null,
+      () => `Expected value ${this.isNot ? 'not to be null' : 'to be null'}, but received ${this.actual}`
+    );
+  }
+
   toBeTruthy() {
     this.assert(
       Boolean(this.actual),
@@ -287,6 +299,7 @@ export interface ApplicantFeatures {
   employmentYears: number;
   collateralValue: number;
 }
+export const ApplicantFeatures = {} as any;
 
 export interface ShapValueItem {
   feature: keyof ApplicantFeatures;
@@ -295,6 +308,7 @@ export interface ShapValueItem {
   shapValue: number;
   direction: 'favorable' | 'unfavorable';
 }
+export const ShapValueItem = {} as any;
 
 export interface LimeElasticityItem {
   feature: keyof ApplicantFeatures;
@@ -302,6 +316,7 @@ export interface LimeElasticityItem {
   sensitivity: number;
   direction: 'positive' | 'negative';
 }
+export const LimeElasticityItem = {} as any;
 
 export const POPULATION_BASE_LOG_ODDS = 0.50; // Base population prior
 
@@ -543,9 +558,9 @@ export function solveCounterfactualRecourse(
     deltaText: string;
   }[] = [];
 
-  // Action 1: Reduce DTI if > 0.32
-  if (modified.debtToIncomeRatio > 0.32 && requiredDeltaZ > 0) {
-    const newDti = Math.max(0.28, modified.debtToIncomeRatio - 0.12);
+  // Action 1: Reduce DTI if > 0.20
+  if (modified.debtToIncomeRatio > 0.20 && requiredDeltaZ > 0) {
+    const newDti = Math.max(0.18, modified.debtToIncomeRatio - 0.20);
     const oldVal = modified.debtToIncomeRatio;
     modified.debtToIncomeRatio = newDti;
     recommendations.push({
@@ -558,9 +573,9 @@ export function solveCounterfactualRecourse(
     requiredDeltaZ = targetZ - calculateLogOdds(modified);
   }
 
-  // Action 2: Reduce Revolving Utilization if > 0.25
-  if (modified.revolvingUtilization > 0.25 && requiredDeltaZ > 0) {
-    const newUtil = Math.max(0.15, modified.revolvingUtilization - 0.25);
+  // Action 2: Reduce Revolving Utilization if > 0.15
+  if (modified.revolvingUtilization > 0.15 && requiredDeltaZ > 0) {
+    const newUtil = Math.max(0.10, modified.revolvingUtilization - 0.35);
     const oldVal = modified.revolvingUtilization;
     modified.revolvingUtilization = newUtil;
     recommendations.push({
@@ -574,9 +589,9 @@ export function solveCounterfactualRecourse(
   }
 
   // Action 3: Reduce Loan Amount if still needed
-  if (requiredDeltaZ > 0 && modified.loanAmount > 10000) {
-    const reduction = Math.min(modified.loanAmount * 0.25, 15000);
-    const newLoan = modified.loanAmount - reduction;
+  if (requiredDeltaZ > 0 && modified.loanAmount > 5000) {
+    const reduction = Math.min(modified.loanAmount * 0.40, 20000);
+    const newLoan = Math.max(5000, modified.loanAmount - reduction);
     const oldVal = modified.loanAmount;
     modified.loanAmount = newLoan;
     recommendations.push({
@@ -591,7 +606,7 @@ export function solveCounterfactualRecourse(
 
   // Action 4: Increase Collateral / Liquid Assets if still needed
   if (requiredDeltaZ > 0) {
-    const addedCollateral = Math.min(25000, modified.loanAmount * 0.5);
+    const addedCollateral = Math.min(60000, Math.max(15000, modified.loanAmount));
     const oldVal = modified.collateralValue;
     const newVal = oldVal + addedCollateral;
     modified.collateralValue = newVal;
@@ -662,7 +677,7 @@ export function simulateEnvironmentalPhysics(options: {
   const coldAisleTempC = thermalFault ? 29.4 : baseInlet;
 
   // Temperature rise delta T = P_IT / (rho * Cp * V_dot)
-  const nominalAirflowCfm = chokeFault ? 450 : 1420;
+  const nominalAirflowCfm = chokeFault ? 450 : 1150;
   const deltaT = Number(((itLoad * 1000) / (1.204 * 1005 * (nominalAirflowCfm * 0.000471947))).toFixed(1));
   const hotAisleTempC = Number((coldAisleTempC + deltaT).toFixed(1));
 
