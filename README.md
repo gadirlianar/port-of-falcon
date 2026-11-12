@@ -5,6 +5,7 @@
 ### The Mission-Critical Telemetry Command Center & Production Portfolio of Anar Gadirli
 
 <p align="center">
+  <a href="https://github.com/gadirlianar/port-of-falcon/actions"><img src="https://github.com/gadirlianar/port-of-falcon/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
   <img src="https://img.shields.io/badge/Next.js-15.1.7-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
   <img src="https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 19" />
   <img src="https://img.shields.io/badge/TypeScript-5.7.3-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
