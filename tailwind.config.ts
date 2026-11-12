@@ -37,7 +37,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ['var(--font-space-grotesk)', 'Space Grotesk', 'sans-serif'],
+        kanit: ['var(--font-kanit)', 'Kanit', 'sans-serif'],
+        display: ['var(--font-kanit)', 'var(--font-space-grotesk)', 'Kanit', 'sans-serif'],
         sans: ['var(--font-inter)', 'Inter', 'sans-serif'],
         mono: ['var(--font-jetbrains-mono)', 'JetBrains Mono', 'monospace'],
       },

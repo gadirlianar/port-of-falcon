@@ -3,9 +3,9 @@
  * Path: src/lib/constants.ts
  */
 
-import { RackSensorData } from '@/types/telemetry';
-import { ApplicantFeatures, ApplicantPreset } from '@/types/xai';
-import { ProjectItem, DisciplineItem, SocialLink } from '@/types/project';
+import type { RackSensorData } from '@/types/telemetry';
+import type { ApplicantFeatures, ApplicantPreset } from '@/types/xai';
+import type { ProjectItem, DisciplineItem, SocialLink } from '@/types/project';
 
 export const FALCON_PROFILE = {
   name: 'Anar Gadirli',

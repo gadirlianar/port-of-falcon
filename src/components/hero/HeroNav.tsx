@@ -11,8 +11,7 @@ export interface HeroNavProps {
 export default function HeroNav({ className = '' }: HeroNavProps) {
   const navItems = [
     { label: 'ABOUT', href: '#about' },
-    { label: 'TELEMETRY', href: '#telemetry' },
-    { label: 'XAI', href: '#xai' },
+    { label: 'SERVICES', href: '#services' },
     { label: 'PROJECTS', href: '#projects' },
     { label: 'CONTACT', href: '#contact' },
   ];

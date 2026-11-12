@@ -1,6 +1,13 @@
 import type { Metadata, Viewport } from 'next';
-import { Space_Grotesk, JetBrains_Mono, Inter } from 'next/font/google';
+import { Kanit, Space_Grotesk, JetBrains_Mono, Inter } from 'next/font/google';
 import './globals.css';
+
+const kanit = Kanit({
+  subsets: ['latin'],
+  variable: '--font-kanit',
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+});
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -93,7 +100,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark scroll-smooth ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${inter.variable}`}
+      className={`dark scroll-smooth ${kanit.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${inter.variable}`}
     >
       <body className="bg-[#020617] text-[#F8FAFC] antialiased selection:bg-cyan-500/30 selection:text-cyan-200 min-h-screen overflow-x-hidden">
         {children}
